@@ -1,86 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arya | Linux Notes</title>
-  <meta name="description" content="Arya's Linux notes and quick-reference commands for daily use." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linux Notes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Inter', sans-serif;
+      background-color: #f9f9f9;
+      color: #222;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.7;
+    }
+    h1, h2 {
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.8rem;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 2rem 0;
     }
     code {
-      background: #f3f4f6;
-      padding: 2px 5px;
+      font-family: 'Fira Code', monospace;
+      background: #eee;
+      padding: 0.2rem 0.4rem;
       border-radius: 4px;
-      font-size: 0.9em;
+      font-size: 0.95em;
     }
     ul {
-      list-style-type: disc;
-      padding-left: 1.2em;
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    li {
+      margin-bottom: 0.4rem;
+    }
+    strong {
+      font-weight: 600;
+    }
+    em {
+      color: #666;
     }
   </style>
 </head>
+<body>
 
-<body class="bg-white text-gray-800">
+  <h1>Linux Notes</h1>
 
-  <main class="max-w-3xl mx-auto px-6 py-16 space-y-16">
+  <p>These are notes the ones I type almost without thinking.</p>
 
-    <!-- Header -->
-    <section>
-      <h1 class="text-4xl font-semibold mb-2">Linux: Commands I Actually Use</h1>
-      <p class="text-lg text-gray-600">
-        A practical quick-reference guide to the Linux commands I use daily — for system navigation, file manipulation, and a bit of network work.
-      </p>
-    </section>
+  <hr>
 
-    <!-- Commands Section -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-4">Everyday Commands</h2>
-      <ul class="space-y-2">
-        <li><code>ls -la</code> → Show me <strong>everything</strong>, even the files pretending they don’t exist.</li>
-        <li><code>cd -</code> → Jump back to where I just was. Instant teleport.</li>
-        <li><code>grep -r "text" .</code> → Search inside files like a digital detective.</li>
-        <li><code>chmod +x script.sh</code> → Give a script the green light to run.</li>
-        <li><code>sudo !!</code> → Rerun the last command with superpowers.</li>
+  <h2> Navigation </h2>
+  <ul>
+    <li><code>pwd</code> : “Where am I?” </li>
+    <li><code>ls</code> : Show me what’s here.
+      <ul>
+        <li><code>ls -la</code> : Show me <strong>everything</strong> even the files pretending they don’t exist.</li>
       </ul>
-    </section>
+    </li>
+    <li><code>cd &lt;dir&gt;</code> : Teleport into a folder.</li>
+    <li><code>cd ..</code> : Retreat one step like a cautious penguin.</li>
+    <li><code>cd ~</code> : Home sweet home.</li>
+  </ul>
 
-    <!-- File & System Management -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-4">File & System Management</h2>
-      <ul class="space-y-2">
-        <li><code>df -h</code> → Check how much space is left before panic sets in.</li>
-        <li><code>du -sh *</code> → Find out which folders are hogging all the space.</li>
-        <li><code>tar -czvf archive.tar.gz folder/</code> → Compress stuff neatly.</li>
-        <li><code>htop</code> → See what's eating your CPU (and end it).</li>
-      </ul>
-    </section>
+  <hr>
 
-    <!-- Networking -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-4">Networking</h2>
-      <ul class="space-y-2">
-        <li><code>ifconfig</code> or <code>ip a</code> → Show network interfaces.</li>
-        <li><code>ping -c 4 example.com</code> → See if the internet is alive.</li>
-        <li><code>netstat -tulnp</code> → List open ports and services.</li>
-      </ul>
-    </section>
+  <h2> Making & Breaking Things</h2>
+  <ul>
+    <li><code>mkdir new_dir</code> : Create a shiny new folder.</li>
+    <li><code>touch file.txt</code> : Spawn an empty file that will eventually be replaced.</li>
+    <li><code>rm file.txt</code> : Delete. Regret. Repeat.</li>
+    <li><code>rm -r folder</code> : <strong>Nuke</strong> a folder from orbit.</li>
+    <li><code>mv old.txt new.txt</code> : Rename it and pretend it’s a different file.</li>
+    <li><code>cp file.txt copy.txt</code> : Duplicate it, because paranoia is healthy.</li>
+  </ul>
 
-    <!-- CTF Tips -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-4">CTF Quick Tips</h2>
-      <ul class="space-y-2">
-        <li>Always start with <code>strings</code> on binaries. Hidden messages love to hide there.</li>
-        <li>Use <code>binwalk</code> for files — you might find embedded treasures.</li>
-        <li>Don’t forget <code>exiftool</code> for images; metadata can be surprisingly chatty.</li>
-        <li>Bookmark <strong>CyberChef</strong>. It’s like a Swiss Army knife for encoding, decoding, and weird transformations.</li>
-        <li>When stuck, step back and read the challenge description again — clues hide in plain sight.</li>
-      </ul>
-    </section>
+  <hr>
+
+  <h2> Finding Stuff Without Clicking Around</h2>
+  <ul>
+    <li><code>find / -name "*.txt"</code> : Search for all <code>.txt</code> files starting from root.</li>
+    <li><code>grep "keyword" file.txt</code> : Search inside a file like an X-ray.</li>
+    <li><code>grep -r "password" /etc</code> : Reckless.</li>
+    <li><code>locate something</code> : The lazy cousin of <code>find</code>.</li>
+  </ul>
+
+  <hr>
+
+  <h2> Reading Files Like a Hacker</h2>
+  <ul>
+    <li><code>cat file.txt</code> : Dump everything at once.</li>
+    <li><code>less file.txt</code> : Scroll .</li>
+    <li><code>head file.txt</code> : Just the first 10 lines.</li>
+    <li><code>tail file.txt</code> : The last 10 lines.</li>
+    <li><code>tail -f logfile.log</code> : Live stream your system’s drama in real-time.</li>
+  </ul>
+
+  <hr>
+
+  <h2> Permissions & Ownership </h2>
+  <ul>
+    <li><code>chmod 755 script.sh</code> : Give it permission to run.</li>
+    <li><code>chmod +x file.sh</code> : Make it executable.</li>
+    <li><code>chown user:group file.txt</code> : Claim it as your own.</li>
+    <li><code>sudo</code> : Borrow root’s superpowers (temporarily, hopefully).</li>
+  </ul>
+
+  <hr>
+
+  <h2> Package Management </h2>
+  <p><strong>Debian/Ubuntu gang:</strong></p>
+  <ul>
+    <li><code>sudo apt update</code> : Update the pantry list.</li>
+    <li><code>sudo apt upgrade</code> : Upgrade everything (pray nothing breaks).</li>
+    <li><code>sudo apt install neofetch</code> : For flexing your OS in screenshots.</li>
+  </ul>
+  <p><strong>Fedora/CentOS gang:</strong></p>
+  <ul>
+    <li><code>sudo dnf install htop</code> : See processes in HD.</li>
+  </ul>
+
+  <hr>
+
+  <h2> Process Mind Control</h2>
+  <ul>
+    <li><code>ps aux</code> : See <em>everything</em> that’s alive.</li>
+    <li><code>top</code> : Watch your CPU freak out in real time.</li>
+    <li><code>kill &lt;pid&gt;</code> : Pull the plug on a process.</li>
+    <li><code>kill -9 &lt;pid&gt;</code> : Pull the plug <em>hard</em>.</li>
+    <li><code>htop</code> : The cooler, colorized cousin of <code>top</code>.</li>
+  </ul>
+
+  <hr>
+
+  <h2> Networking Commands</h2>
+  <ul>
+    <li><code>ip a</code> : Show all network interfaces.</li>
+    <li><code>ping google.com</code> : Are we online?</li>
+    <li><code>curl ifconfig.me</code> : What’s my public IP?</li>
+    <li><code>netstat -tulpn</code> : See which apps are listening.</li>
+    <li><code>ss -tulpn</code> : The newer, faster version of <code>netstat</code>.</li>
+  </ul>
+
+  <hr>
+
+  <h2> Quick </h2>
+  <ul>
+    <li><code>!!</code> : Run the last command again (great for <code>sudo</code> oopsies).</li>
+    <li><code>history</code> : See every command you’ve typed .</li>
+    <li><code>clear</code> : Hide your shame from the terminal.</li>
+    <li><code>df -h</code> : Show disk space .</li>
+    <li><code>du -sh *</code> : See folder sizes in current directory.</li>
+    <li><code>watch -n 1 &lt;command&gt;</code> : Run a command every second .</li>
+  </ul>
+
+  <hr>
+
+  <p>sudo commads can be a demon.</p>
+
+</body>
+</html>
+
 
     <!-- Back to Blog -->
     <section>
