@@ -39,13 +39,13 @@
 <body>
     <h1>CTF Tips from a Fellow Player</h1>
     <p>
-        Not an expert here — just someone who’s been down the rabbit hole of CTFs at 2 AM with too much coffee.
+        Not an expert here just someone who’s been down the rabbit hole of CTFs at 2 AM.
         These are some notes I wish I had when I started.
     </p>
 
     <h2>1. Read the Question Slowly</h2>
     <p>
-        First mistake I used to make — rushing. Take a breath, read it twice.
+        First mistake I used to make: rushing. Take a breath, read it twice.
         Sometimes the challenge literally tells you the answer if you slow down.
     </p>
 
@@ -68,20 +68,30 @@
         Stuff like <code>strings</code>, <code>grep</code>, <code>file</code>, <code>base64</code> decoding, and simple scripting
         solves more challenges than you think.
     </p>
+    <h2>5. Learn the Common Tools</h2>
+<ul>
+    <li><code>strings</code> : pull out readable text from binaries.</li>
+    <li><code>binwalk</code> : great for picking apart firmware or files.</li>
+    <li><code>john</code> / <code>hashcat</code> : password cracking tools.</li>
+    <li><code>exiftool</code> : dig into file metadata.</li>
+</ul>
 
     <div class="note">
-        💡 Bonus: Have <code>cyberchef</code> bookmarked.  
+         Bonus: Have <code>cyberchef</code> bookmarked.  
         It’s like a Swiss Army knife for encoding/decoding and random transformations.
     </div>
-
-    <h2>5. Play with Friends</h2>
+<h2>5. Don’t Ignore “Weird” Files</h2>
+<p>If there’s a random text file or image in the challenge folder, open it. Look at it in hex, open it in a text editor, check its metadata — anything. Sometimes the flag is hiding in plain sight.</p>
+    <h2>8. Practice Off-CTF</h2>
+<p>Platforms like TryHackMe, HackTheBox, or PicoCTF are great for keeping your skills sharp even when there’s no live CTF going on.</p>
+    <h2>6. Play with Friends</h2>
     <p>
         CTFs are way more fun in a team.  
         Plus, you’ll learn way faster when you see how others approach problems.
     </p>
 
     <p style="margin-top:2rem; font-size:0.9rem; color:#666;">
-        That’s all for now — I’ll drop more tips as I keep playing.  
+          
         Good luck, and may your flags be real and your hints be kind.
     </p>
 </body>
