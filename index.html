@@ -4,81 +4,159 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Arya | Cybersecurity Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Arya's cybersecurity portfolio — CTFs, projects, and good vibes." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+  </style>
 </head>
-<body>
 
-  <!-- Intro Section -->
-  <header>
-    <h1>Arya</h1>
-    <p>Cybersecurity undergrad with a passion for offensive security, CTF challenges, and building secure tools. 
-    I thrive on deconstructing complex systems to understand how they work — and how to secure them. 
-    Currently seeking a Summer 2026 internship in penetration testing.</p>
-    <p>
-      <a href="https://www.linkedin.com/in/aarya-kshirsagar-8364b4307/">LinkedIn</a> • 
-      <a href="https://github.com/aryakshirsagar">GitHub</a> • 
-      <a href="mailto:arya26k@gmail.com">Email</a>
-    </p>
-  </header>
+<body class="bg-white text-gray-800">
 
-  <!-- Skills Section -->
-  <section>
-    <h2>Technical Skills</h2>
-    <ul>
-      <li><strong>Languages:</strong> Python, Bash, JavaScript</li>
-      <li><strong>Tools:</strong> Nmap, Wireshark, Burp Suite, Git</li>
-      <li><strong>Areas of Knowledge:</strong> Web Application Security (OWASP Top 10), Network Protocols, Linux Administration, CTF Methodologies</li>
-    </ul>
-  </section>
+  <main class="max-w-2xl mx-auto px-6 py-16 space-y-16">
 
-  <!-- Projects Section -->
-  <section>
-    <h2>Projects</h2>
+    <!-- Header -->
+    <section>
+      <h1 class="text-4xl font-semibold mb-2">Arya</h1>
+      <p class="text-lg text-gray-600">Cybersecurity undergrad • CTFs • Breaking stuff (the legal kind)</p>
+    </section>
 
-    <div class="project">
-      <h3>StrongPass Generator</h3>
-      <p>A web tool that creates cryptographically secure passwords to help users avoid common password pitfalls.</p>
-      <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript</p>
-      <p>
-        <a href="https://your-live-demo-link.com">Try it Live</a> • 
-        <a href="https://github.com/aryakshirsagar/strongpass-generator">View on GitHub</a>
-      </p>
-    </div>
+    <!-- Projects -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-4">Projects</h2>
+      <ul class="space-y-5">
+        <li>
+          <a href="https://aryaakshirsagar.github.io/get-well-soon/" target="_blank" class="text-blue-600 font-medium hover:underline">
+            Get Well Soon Website
+          </a>
+          <p class="text-sm text-gray-500">Emotional support site to cheer up a friend</p>
+        </li>
+        <li>
+          <a href="https://github.com/aryaakshirsagar/minesweeper-gui" target="_blank" class="text-blue-600 font-medium hover:underline">
+            Minesweeper GUI (Python)
+          </a>
+          <p class="text-sm text-gray-500">Retro-styled Minesweeper. Looks cute, still tries to blow you up.</p>
+        </li>
+        <li>
+          <a href="https://aryaakshirsagar.github.io/strongpass/" target="_blank" class="text-blue-600 font-medium hover:underline">
+            StrongPass Generator
+          </a>
+          <p class="text-sm text-gray-500">No more weak passwords. Generate secure ones instantly.</p>
+        </li>
+      </ul>
+    </section>
+    <!-- Blog -->
+<section>
+  <h2 class="text-2xl font-semibold mb-4">Blog</h2>
+  <ul class="space-y-5">
+    <li>
+      <a href="blog/linux.html" class="text-blue-600 font-medium hover:underline">
+        Linux : Commands I Actually Use
+      </a>
+      <p class="text-sm text-gray-500">A growing list of commands I use daily.</p>
+    </li>
+    <li>
+      <a href="blog/ctf.html" class="text-blue-600 font-medium hover:underline">
+        CTF for Beginners
+      </a>
+      <p class="text-sm text-gray-500">Small hacks to solve challenges faster.</p>
+    </li>
+  </ul>
+</section>
 
-    <div class="project">
-      <h3>Minesweeper GUI</h3>
-      <p>A retro-styled Minesweeper game built to practice object-oriented programming principles in Python. Looks cute, still tries to blow you up.</p>
-      <p><strong>Tech Stack:</strong> Python, Tkinter</p>
-      <p>
-        <a href="https://github.com/aryakshirsagar/minesweeper-gui">View on GitHub</a>
-      </p>
-    </div>
 
-    <div class="project">
-      <h3>Get Well Soon Website</h3>
-      <p>An interactive and cheerful website designed as emotional support for a friend, featuring animations and positive messages.</p>
-      <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript</p>
-      <p>
-        <a href="https://aryakshirsagar.github.io/get-well-soon/">View on GitHub Pages</a>
-      </p>
-    </div>
-  </section>
+    <!-- Security Platforms: Accordion + Timeline -->
+    <section>
+  <details class="group open:pt-2">
+    <summary class="flex justify-between items-center text-xl font-semibold cursor-pointer select-none">
+      <span class="transition group-open:text-blue-600">Security Platforms</span>
+      <svg class="w-5 h-5 transition-transform transform group-open:rotate-180 group-open:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </summary>
 
-  <!-- Blog Section -->
-  <section>
-    <h2>Blog / Writing</h2>
-    <div class="blog-post">
-      <h3>CTF for Beginners: Small Hacks to Solve Challenges Faster</h3>
-      <p>A collection of tips and tricks I've learned to speed up the process of solving entry-level Capture The Flag challenges.</p>
-      <p><a href="blog/ctf-for-beginners.html">Read Post</a></p>
-    </div>
+    <ol class="mt-6 relative pl-4 border-l border-gray-200 space-y-6">
+      <li class="relative pl-2">
+        <h4>
+          <a href="https://tryhackme.com/p/arya874" target="_blank" class="font-semibold text-gray-800 hover:text-blue-600 transition">
+            TryHackMe
+          </a>
+        </h4>
+        <p class="text-sm text-gray-500">Exploring red teaming labs and fundamentals.</p>
+      </li>
+      <li class="relative pl-2">
+        <h4>
+          <a href="https://ctf.hackthebox.com/user/profile/400690" target="_blank" class="font-semibold text-gray-800 hover:text-blue-600 transition">
+            Hack The Box
+          </a>
+        </h4>
+        <p class="text-sm text-gray-500">Gaining hands-on experience with real-world boxes.</p>
+      </li>
+      <li class="relative pl-2">
+        <h4>
+          <a href="https://bugcrowd.com/h/arya874" target="_blank" class="font-semibold text-gray-800 hover:text-blue-600 transition">
+            Bugcrowd
+          </a>
+        </h4>
+        <p class="text-sm text-gray-500">Beginning web application testing via Bugcrowd programs.</p>
+      </li>
+      <li class="relative pl-2">
+        <h4>
+          <a href="https://hackerone.com/arya418?type=user" target="_blank" class="font-semibold text-gray-800 hover:text-blue-600 transition">
+            HackerOne
+          </a>
+        </h4>
+        <p class="text-sm text-gray-500">Profiling targets and studying top reports on HackerOne.</p>
+      </li>
+      <li class="relative pl-2">
+        <h4>
+          <a href="https://app.intigriti.com/researcher/profile/arya814" target="_blank" class="font-semibold text-gray-800 hover:text-blue-600 transition">
+            Intigriti
+          </a>
+        </h4>
+        <p class="text-sm text-gray-500">Onboarded and exploring scope-based programs.</p>
+      </li>
+    </ol>
+  </details>
+</section>
 
-    <div class="blog-post">
-      <h3>Linux: Commands I Actually Use</h3>
-      <p>A practical quick-reference guide to my most-used Linux commands for system navigation, file manipulation, and network analysis.</p>
-      <p><a href="blog/linux-commands.html">Read Post</a></p>
-    </div>
-  </section>
 
+    <!-- Social Icons -->
+   <section>
+  <h2 class="text-2xl font-semibold mb-4">Links</h2>
+  <div class="flex gap-4">
+    <!-- GitHub -->
+    <a href="https://github.com/aryaakshirsagar" target="_blank" title="GitHub"
+       class="bg-black text-white w-10 h-10 flex items-center justify-center rounded-full hover:opacity-80 transition">
+      <i class="fab fa-github"></i>
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/aarya-kshirsagar-8364b4307/" target="_blank" title="LinkedIn"
+       class="bg-black text-white w-10 h-10 flex items-center justify-center rounded-full hover:opacity-80 transition">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+
+    <!-- Email -->
+    <a href="mailto:arya26k@gmail.com" title="Email"
+       class="bg-black text-white w-10 h-10 flex items-center justify-center rounded-full hover:opacity-80 transition">
+      <i class="fas fa-envelope"></i>
+    </a>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="text-center text-sm text-gray-400 py-6">
+    &copy; 2025 
+  </footer>
 </body>
 </html>
+
