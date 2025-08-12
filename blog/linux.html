@@ -1,118 +1,84 @@
----
-layout: post
-title: "Linux Notes (aka My Hacker Handbook)"
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: #fafafa;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #222;
+        }
+        code {
+            background: #eee;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .note {
+            background: #fff9c4;
+            padding: 10px;
+            border-left: 4px solid #fbc02d;
+            margin: 15px 0;
+        }
+        ul {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
 
-<p>These are my personal Linux notes — the ones I type almost without thinking.<br>
-They’re part reference, part brain dump, part stand-up comedy for sysadmins.<br>
-Use responsibly. Or not. I’m not your root user.</p>
+<h1>Linux Notes</h1>
 
-<hr>
-
-<h2>🗺️ Navigation — Don’t Get Lost in the Void</h2>
+<h2>General Tips</h2>
 <ul>
-  <li><code>pwd</code> → “Where am I?” <em>Existential crisis avoided.</em></li>
-  <li><code>ls</code> → Show me what’s here.
-    <ul>
-      <li><code>ls -la</code> → Show me <strong>everything</strong> — even the files pretending they don’t exist.</li>
-    </ul>
-  </li>
-  <li><code>cd &lt;dir&gt;</code> → Teleport into a folder.</li>
-  <li><code>cd ..</code> → Retreat one step like a cautious penguin.</li>
-  <li><code>cd ~</code> → Home sweet home.</li>
+    <li>Don’t fear the terminal — start with basic commands like <code>ls</code>, <code>cd</code>, <code>pwd</code>.</li>
+    <li>Use <code>man &lt;command&gt;</code> to learn what a command does.</li>
+    <li>Keep your commands short and readable. Chaining is fun but don’t go overboard.</li>
 </ul>
 
-<hr>
-
-<h2>📂 Making &amp; Breaking Things</h2>
+<h2>Essential Commands</h2>
 <ul>
-  <li><code>mkdir new_dir</code> → Create a shiny new folder.</li>
-  <li><code>touch file.txt</code> → Spawn an empty file that will eventually be replaced.</li>
-  <li><code>rm file.txt</code> → Delete. Regret. Repeat.</li>
-  <li><code>rm -r folder</code> → <strong>Nuke</strong> a folder from orbit.</li>
-  <li><code>mv old.txt new.txt</code> → Rename it and pretend it’s a different file.</li>
-  <li><code>cp file.txt copy.txt</code> → Duplicate it, because paranoia is healthy.</li>
+    <li><code>grep</code> – Search inside files</li>
+    <li><code>find</code> – Locate files/folders</li>
+    <li><code>chmod</code> & <code>chown</code> – Manage permissions</li>
+    <li><code>ps aux</code> – View running processes</li>
+    <li><code>kill</code> – Stop processes</li>
 </ul>
 
-<hr>
-
-<h2>🔍 Finding Stuff Without Clicking Around</h2>
+<h2>CTF & Security Stuff</h2>
 <ul>
-  <li><code>find / -name "*.txt"</code> → Search for all <code>.txt</code> files starting from root.</li>
-  <li><code>grep "keyword" file.txt</code> → Search inside a file like an X-ray.</li>
-  <li><code>grep -r "password" /etc</code> → Reckless but oddly satisfying.</li>
-  <li><code>locate something</code> → The lazy cousin of <code>find</code>.</li>
+    <li>Use <code>strings &lt;file&gt;</code> to find hidden text.</li>
+    <li><code>file &lt;file&gt;</code> to identify file types.</li>
+    <li><code>xxd</code> to view file in hex.</li>
+    <li>Always check hidden files with <code>ls -a</code>.</li>
 </ul>
 
-<hr>
+<div class="note">
+    💡 Bonus: Keep <code>CyberChef</code> in your bookmarks bar.  
+    It’s basically a magic kitchen where you can throw random data in and get it cooked into something readable.
+</div>
 
-<h2>👀 Reading Files Like a Hacker</h2>
+<h2>Random Advice</h2>
 <ul>
-  <li><code>cat file.txt</code> → Dump everything at once.</li>
-  <li><code>less file.txt</code> → Scroll like a civilized human.</li>
-  <li><code>head file.txt</code> → Just the first 10 lines.</li>
-  <li><code>tail file.txt</code> → The last 10 lines — sometimes where the plot twist is.</li>
-  <li><code>tail -f logfile.log</code> → Live-stream your system’s drama in real-time.</li>
+    <li>Use <code>alias</code> to make shortcuts for your most-used commands.</li>
+    <li>Tab-completion is your best friend — saves time and typos.</li>
+    <li>Keep a “Linux cheatsheet” text file for quick reference.</li>
 </ul>
 
-<hr>
-
-<h2>🔐 Permissions &amp; Ownership — Who’s the Boss</h2>
-<ul>
-  <li><code>chmod 755 script.sh</code> → Give it permission to run (but not stage a coup).</li>
-  <li><code>chmod +x file.sh</code> → Make it executable.</li>
-  <li><code>chown user:group file.txt</code> → Claim it as your own.</li>
-  <li><code>sudo</code> → Borrow root’s superpowers (temporarily, hopefully).</li>
-</ul>
-
-<hr>
-
-<h2>📦 Package Management — Feeding Your System</h2>
-<p><strong>Debian/Ubuntu gang:</strong></p>
-<ul>
-  <li><code>sudo apt update</code> → Update the pantry list.</li>
-  <li><code>sudo apt upgrade</code> → Upgrade everything (pray nothing breaks).</li>
-  <li><code>sudo apt install neofetch</code> → For flexing your OS in screenshots.</li>
-</ul>
-<p><strong>Fedora/CentOS crew:</strong></p>
-<ul>
-  <li><code>sudo dnf install htop</code> → See processes in HD.</li>
-</ul>
-
-<hr>
-
-<h2>🧠 Process Mind Control</h2>
-<ul>
-  <li><code>ps aux</code> → See <em>everything</em> that’s alive.</li>
-  <li><code>top</code> → Watch your CPU freak out in real time.</li>
-  <li><code>kill &lt;pid&gt;</code> → Pull the plug on a process.</li>
-  <li><code>kill -9 &lt;pid&gt;</code> → Pull the plug <em>hard</em>.</li>
-  <li><code>htop</code> → The cooler, colorized cousin of <code>top</code>.</li>
-</ul>
-
-<hr>
-
-<h2>🌐 Networking Commands</h2>
-<ul>
-  <li><code>ip a</code> → Show all network interfaces.</li>
-  <li><code>ping google.com</code> → Are we online?</li>
-  <li><code>curl ifconfig.me</code> → What’s my public IP?</li>
-  <li><code>netstat -tulpn</code> → See which apps are listening.</li>
-  <li><code>ss -tulpn</code> → The newer, faster version of <code>netstat</code>.</li>
-</ul>
-
-<hr>
-
-<h2>⚡ Quick Tricks &amp; Chaos</h2>
-<ul>
-  <li><code>!!</code> → Run the last command again (great for <code>sudo</code> oopsies).</li>
-  <li><code>history</code> → See every command you’ve typed (and judge yourself).</li>
-  <li><code>clear</code> → Hide your shame from the terminal.</li>
-  <li><code>df -h</code> → Show disk space in human-friendly numbers.</li>
-  <li><code>du -sh *</code> → See folder sizes in current directory.</li>
-  <li><code>watch -n 1 &lt;command&gt;</code> → Run a command every second (great for stalking logs).</li>
-</ul>
-
-<hr>
-
-<p><strong>💡 Final Pro Tip:</strong> Linux is like magic — except the wand is the keyboard, the spells are commands, and typos can summon demons.</p>
+</body>
+</html>
