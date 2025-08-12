@@ -1,160 +1,172 @@
----
-layout: post
-title: "Linux Notes (aka My Hacker Handbook)"
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linux Notes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9f9f9;
+      color: #222;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.7;
+    }
+    h1, h2 {
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.8rem;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 2rem 0;
+    }
+    code {
+      font-family: 'Fira Code', monospace;
+      background: #eee;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+    ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    li {
+      margin-bottom: 0.4rem;
+    }
+    strong {
+      font-weight: 600;
+    }
+    em {
+      color: #666;
+    }
+  </style>
+</head>
+<body>
 
-<style>
-  .linux-notes {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
-    font-family: "Fira Code", monospace;
-    line-height: 1.7;
-    background: #1e1e1e;
-    color: #ddd;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  }
-  .linux-notes h2 {
-    color: #ffd54f;
-    border-bottom: 1px solid #444;
-    padding-bottom: 5px;
-  }
-  .linux-notes p, 
-  .linux-notes li {
-    font-size: 16px;
-  }
-  .linux-notes code {
-    background: #2c2c2c;
-    color: #ff9800;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 15px;
-  }
-  .linux-notes ul {
-    margin-bottom: 20px;
-  }
-  hr {
-    border: none;
-    border-top: 1px solid #555;
-    margin: 20px 0;
-  }
-</style>
+  <h1>Linux Notes</h1>
 
-<div class="linux-notes">
+  <p>These are my personal Linux notes — the ones I type almost without thinking.<br>
+  They’re part reference, part brain dump, part stand-up comedy for sysadmins.<br>
+  Use responsibly. Or not. I’m not your root user.</p>
 
-<p>These are my personal Linux notes — the ones I type almost without thinking.<br>
-They’re part reference, part brain dump, part stand-up comedy for sysadmins.<br>
-Use responsibly. Or not. I’m not your root user.</p>
+  <hr>
 
-<hr>
+  <h2>🗺️ Navigation — Don’t Get Lost in the Void</h2>
+  <ul>
+    <li><code>pwd</code> → “Where am I?” <em>Existential crisis avoided.</em></li>
+    <li><code>ls</code> → Show me what’s here.
+      <ul>
+        <li><code>ls -la</code> → Show me <strong>everything</strong> — even the files pretending they don’t exist.</li>
+      </ul>
+    </li>
+    <li><code>cd &lt;dir&gt;</code> → Teleport into a folder.</li>
+    <li><code>cd ..</code> → Retreat one step like a cautious penguin.</li>
+    <li><code>cd ~</code> → Home sweet home.</li>
+  </ul>
 
-<h2>🗺️ Navigation — Don’t Get Lost in the Void</h2>
-<ul>
-  <li><code>pwd</code> → “Where am I?” <em>Existential crisis avoided.</em></li>
-  <li><code>ls</code> → Show me what’s here.
-    <ul>
-      <li><code>ls -la</code> → Show me <strong>everything</strong> — even the files pretending they don’t exist.</li>
-    </ul>
-  </li>
-  <li><code>cd &lt;dir&gt;</code> → Teleport into a folder.</li>
-  <li><code>cd ..</code> → Retreat one step like a cautious penguin.</li>
-  <li><code>cd ~</code> → Home sweet home.</li>
-</ul>
+  <hr>
 
-<hr>
+  <h2>📂 Making & Breaking Things</h2>
+  <ul>
+    <li><code>mkdir new_dir</code> → Create a shiny new folder.</li>
+    <li><code>touch file.txt</code> → Spawn an empty file that will eventually be replaced.</li>
+    <li><code>rm file.txt</code> → Delete. Regret. Repeat.</li>
+    <li><code>rm -r folder</code> → <strong>Nuke</strong> a folder from orbit.</li>
+    <li><code>mv old.txt new.txt</code> → Rename it and pretend it’s a different file.</li>
+    <li><code>cp file.txt copy.txt</code> → Duplicate it, because paranoia is healthy.</li>
+  </ul>
 
-<h2>📂 Making &amp; Breaking Things</h2>
-<ul>
-  <li><code>mkdir new_dir</code> → Create a shiny new folder.</li>
-  <li><code>touch file.txt</code> → Spawn an empty file that will eventually be replaced.</li>
-  <li><code>rm file.txt</code> → Delete. Regret. Repeat.</li>
-  <li><code>rm -r folder</code> → <strong>Nuke</strong> a folder from orbit.</li>
-  <li><code>mv old.txt new.txt</code> → Rename it and pretend it’s a different file.</li>
-  <li><code>cp file.txt copy.txt</code> → Duplicate it, because paranoia is healthy.</li>
-</ul>
+  <hr>
 
-<hr>
+  <h2>🔍 Finding Stuff Without Clicking Around</h2>
+  <ul>
+    <li><code>find / -name "*.txt"</code> → Search for all <code>.txt</code> files starting from root.</li>
+    <li><code>grep "keyword" file.txt</code> → Search inside a file like an X-ray.</li>
+    <li><code>grep -r "password" /etc</code> → Reckless but oddly satisfying.</li>
+    <li><code>locate something</code> → The lazy cousin of <code>find</code>.</li>
+  </ul>
 
-<h2>🔍 Finding Stuff Without Clicking Around</h2>
-<ul>
-  <li><code>find / -name "*.txt"</code> → Search for all <code>.txt</code> files starting from root.</li>
-  <li><code>grep "keyword" file.txt</code> → Search inside a file like an X-ray.</li>
-  <li><code>grep -r "password" /etc</code> → Reckless but oddly satisfying.</li>
-  <li><code>locate something</code> → The lazy cousin of <code>find</code>.</li>
-</ul>
+  <hr>
 
-<hr>
+  <h2>👀 Reading Files Like a Hacker</h2>
+  <ul>
+    <li><code>cat file.txt</code> → Dump everything at once.</li>
+    <li><code>less file.txt</code> → Scroll like a civilized human.</li>
+    <li><code>head file.txt</code> → Just the first 10 lines.</li>
+    <li><code>tail file.txt</code> → The last 10 lines — sometimes where the plot twist is.</li>
+    <li><code>tail -f logfile.log</code> → Live-stream your system’s drama in real-time.</li>
+  </ul>
 
-<h2>👀 Reading Files Like a Hacker</h2>
-<ul>
-  <li><code>cat file.txt</code> → Dump everything at once.</li>
-  <li><code>less file.txt</code> → Scroll like a civilized human.</li>
-  <li><code>head file.txt</code> → Just the first 10 lines.</li>
-  <li><code>tail file.txt</code> → The last 10 lines — sometimes where the plot twist is.</li>
-  <li><code>tail -f logfile.log</code> → Live-stream your system’s drama in real-time.</li>
-</ul>
+  <hr>
 
-<hr>
+  <h2>🔐 Permissions & Ownership — Who’s the Boss</h2>
+  <ul>
+    <li><code>chmod 755 script.sh</code> → Give it permission to run (but not stage a coup).</li>
+    <li><code>chmod +x file.sh</code> → Make it executable.</li>
+    <li><code>chown user:group file.txt</code> → Claim it as your own.</li>
+    <li><code>sudo</code> → Borrow root’s superpowers (temporarily, hopefully).</li>
+  </ul>
 
-<h2>🔐 Permissions &amp; Ownership — Who’s the Boss</h2>
-<ul>
-  <li><code>chmod 755 script.sh</code> → Give it permission to run (but not stage a coup).</li>
-  <li><code>chmod +x file.sh</code> → Make it executable.</li>
-  <li><code>chown user:group file.txt</code> → Claim it as your own.</li>
-  <li><code>sudo</code> → Borrow root’s superpowers (temporarily, hopefully).</li>
-</ul>
+  <hr>
 
-<hr>
+  <h2>📦 Package Management — Feeding Your System</h2>
+  <p><strong>Debian/Ubuntu gang:</strong></p>
+  <ul>
+    <li><code>sudo apt update</code> → Update the pantry list.</li>
+    <li><code>sudo apt upgrade</code> → Upgrade everything (pray nothing breaks).</li>
+    <li><code>sudo apt install neofetch</code> → For flexing your OS in screenshots.</li>
+  </ul>
+  <p><strong>Fedora/CentOS crew:</strong></p>
+  <ul>
+    <li><code>sudo dnf install htop</code> → See processes in HD.</li>
+  </ul>
 
-<h2>📦 Package Management — Feeding Your System</h2>
-<p><strong>Debian/Ubuntu gang:</strong></p>
-<ul>
-  <li><code>sudo apt update</code> → Update the pantry list.</li>
-  <li><code>sudo apt upgrade</code> → Upgrade everything (pray nothing breaks).</li>
-  <li><code>sudo apt install neofetch</code> → For flexing your OS in screenshots.</li>
-</ul>
-<p><strong>Fedora/CentOS crew:</strong></p>
-<ul>
-  <li><code>sudo dnf install htop</code> → See processes in HD.</li>
-</ul>
+  <hr>
 
-<hr>
+  <h2>🧠 Process Mind Control</h2>
+  <ul>
+    <li><code>ps aux</code> → See <em>everything</em> that’s alive.</li>
+    <li><code>top</code> → Watch your CPU freak out in real time.</li>
+    <li><code>kill &lt;pid&gt;</code> → Pull the plug on a process.</li>
+    <li><code>kill -9 &lt;pid&gt;</code> → Pull the plug <em>hard</em>.</li>
+    <li><code>htop</code> → The cooler, colorized cousin of <code>top</code>.</li>
+  </ul>
 
-<h2>🧠 Process Mind Control</h2>
-<ul>
-  <li><code>ps aux</code> → See <em>everything</em> that’s alive.</li>
-  <li><code>top</code> → Watch your CPU freak out in real time.</li>
-  <li><code>kill &lt;pid&gt;</code> → Pull the plug on a process.</li>
-  <li><code>kill -9 &lt;pid&gt;</code> → Pull the plug <em>hard</em>.</li>
-  <li><code>htop</code> → The cooler, colorized cousin of <code>top</code>.</li>
-</ul>
+  <hr>
 
-<hr>
+  <h2>🌐 Networking Commands</h2>
+  <ul>
+    <li><code>ip a</code> → Show all network interfaces.</li>
+    <li><code>ping google.com</code> → Are we online?</li>
+    <li><code>curl ifconfig.me</code> → What’s my public IP?</li>
+    <li><code>netstat -tulpn</code> → See which apps are listening.</li>
+    <li><code>ss -tulpn</code> → The newer, faster version of <code>netstat</code>.</li>
+  </ul>
 
-<h2>🌐 Networking Commands</h2>
-<ul>
-  <li><code>ip a</code> → Show all network interfaces.</li>
-  <li><code>ping google.com</code> → Are we online?</li>
-  <li><code>curl ifconfig.me</code> → What’s my public IP?</li>
-  <li><code>netstat -tulpn</code> → See which apps are listening.</li>
-  <li><code>ss -tulpn</code> → The newer, faster version of <code>netstat</code>.</li>
-</ul>
+  <hr>
 
-<hr>
+  <h2>⚡ Quick Tricks & Chaos</h2>
+  <ul>
+    <li><code>!!</code> → Run the last command again (great for <code>sudo</code> oopsies).</li>
+    <li><code>history</code> → See every command you’ve typed (and judge yourself).</li>
+    <li><code>clear</code> → Hide your shame from the terminal.</li>
+    <li><code>df -h</code> → Show disk space in human-friendly numbers.</li>
+    <li><code>du -sh *</code> → See folder sizes in current directory.</li>
+    <li><code>watch -n 1 &lt;command&gt;</code> → Run a command every second (great for stalking logs).</li>
+  </ul>
 
-<h2>⚡ Quick Tricks &amp; Chaos</h2>
-<ul>
-  <li><code>!!</code> → Run the last command again (great for <code>sudo</code> oopsies).</li>
-  <li><code>history</code> → See every command you’ve typed (and judge yourself).</li>
-  <li><code>clear</code> → Hide your shame from the terminal.</li>
-  <li><code>df -h</code> → Show disk space in human-friendly numbers.</li>
-  <li><code>du -sh *</code> → See folder sizes in current directory.</li>
-  <li><code>watch -n 1 &lt;command&gt;</code> → Run a command every second (great for stalking logs).</li>
-</ul>
+  <hr>
 
-<hr>
+  <p><strong>💡 Final Pro Tip:</strong> Linux is like magic — except the wand is the keyboard, the spells are commands, and typos can summon demons.</p>
 
-<p><strong>💡 Final Pro Tip:</strong> Linux is like magic — except the wand is the keyboard, the spells are commands, and typos can summon demons.</p>
-
-</div>
+</body>
+</html>
