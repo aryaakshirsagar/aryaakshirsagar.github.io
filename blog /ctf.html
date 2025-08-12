@@ -1,114 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Linux & CTF Tips</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      max-width: 800px;
-      margin: auto;
-      padding: 2rem;
-      background-color: #fafafa;
-      color: #222;
-      line-height: 1.6;
-    }
-    h1 {
-      text-align: center;
-      font-weight: 600;
-    }
-    ol {
-      padding-left: 1.2rem;
-    }
-    li {
-      margin-bottom: 1.5rem;
-    }
-    code {
-      background: #f0f0f0;
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
-      font-family: monospace;
-    }
-    .note {
-      background: #fef3c7;
-      border-left: 4px solid #facc15;
-      padding: 0.8rem;
-      margin: 1rem 0;
-    }
-    hr {
-      margin: 2rem 0;
-      border: none;
-      border-top: 1px solid #ddd;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTF Tips for Beginners</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            max-width: 750px;
+            margin: auto;
+            padding: 2rem;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        /* Using h2 for the section title, and h3 for each list item title */
+        h2 {
+            margin-top: 2rem;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #f4f4f4;
+            padding-bottom: 0.5rem;
+        }
+        h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-family: Consolas, monospace; /* Better font for code */
+        }
+        .note {
+            background: #eaf4ff;
+            padding: 1rem;
+            border-left: 4px solid #2196f3;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+        /* Removed the inline style and created a class instead */
+        .sign-off {
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+        /* Styling for the ordered list */
+        ol {
+            list-style: none; /* Removes default 1. 2. 3. numbers */
+            counter-reset: ctf-counter;
+            padding-left: 0;
+        }
+        ol li {
+            counter-increment: ctf-counter;
+            margin-bottom: 2rem;
+        }
+        ol li h3::before {
+            content: counter(ctf-counter) ". ";
+            color: #2196f3;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
+    <main>
+        <h1>CTF Tips from a Fellow Player</h1>
+        <p>
+            Not an expert here, just someone who’s been down the rabbit hole of CTFs at 2 AM. 
+            These are some notes I wish I had when I started.
+        </p>
 
-<h1>Linux Commands & CTF Tips</h1>
+        <ol>
+            <li>
+                <h3>Read the Question Slowly</h3>
+                <p>
+                    First mistake I used to make: rushing. Take a breath, read it twice. 
+                    Sometimes the challenge literally tells you the answer if you slow down.
+                </p>
+            </li>
+            <li>
+                <h3>Keep a Scratchpad</h3>
+                <p>
+                    Open up a Notion page, text file, or even pen & paper. 
+                    Jot down commands, hints, random strings you find. 
+                    Your future self will thank you.
+                </p>
+            </li>
+            <li>
+                <h3>Small Wins > Staring at One Challenge Forever</h3>
+                <p>
+                    Stuck for more than 20–30 mins? Park it. Go get some easy flags to keep morale up. 
+                    You can always come back with a fresh brain.
+                </p>
+            </li>
+            <li>
+                <h3>Learn the Basics (Really)</h3>
+                <p>
+                    A lot of CTF challenges are just “basic” commands in disguise. 
+                    Stuff like <code>strings</code>, <code>grep</code>, <code>file</code>, <code>base64</code> decoding, and simple scripting 
+                    solves more challenges than you think.
+                </p>
+            </li>
+            <li>
+                <h3>Learn the Common Tools</h3>
+                <p>A few tools will get you very far. Here are some must-haves:</p>
+                <ul>
+                    <li><code>strings</code>: Pull out readable text from binaries.</li>
+                    <li><code>binwalk</code>: Great for picking apart firmware or files.</li>
+                    <li><code>john</code> / <code>hashcat</code>: Password cracking tools.</li>
+                    <li><code>exiftool</code>: Dig into file metadata.</li>
+                </ul>
+                <div class="note">
+                    <strong>Bonus:</strong> Have <code>cyberchef</code> bookmarked. 
+                    It’s like a Swiss Army knife for encoding/decoding and random transformations.
+                </div>
+            </li>
+            <li>
+                <h3>Don’t Ignore “Weird” Files</h3>
+                <p>
+                    If there’s a random text file or image in the challenge folder, open it. Look at it in hex, open it in a text editor, check its metadata — anything. Sometimes the flag is hiding in plain sight.
+                </p>
+            </li>
+            <li>
+                <h3>Play with Friends</h3>
+                <p>
+                    CTFs are way more fun in a team. 
+                    Plus, you’ll learn way faster when you see how others approach problems.
+                </p>
+            </li>
+            <li>
+                <h3>Practice Off-CTF</h3>
+                <p>
+                    Platforms like TryHackMe, HackTheBox, or PicoCTF are great for keeping your skills sharp even when there’s no live CTF going on.
+                </p>
+            </li>
+        </ol>
 
-<ol>
-  <li>
-    <h2>Read the Question Slowly</h2>
-    <p>Most CTF flags are hiding in plain sight. The question text often hints exactly where you need to look.</p>
-  </li>
-
-  <li>
-    <h2>Keep a Scratchpad</h2>
-    <p>Jot down IPs, commands, outputs — anything. Saves you from scrolling endlessly later.</p>
-  </li>
-
-  <li>
-    <h2>Try the Obvious Commands First</h2>
-    <ul>
-      <li><code>ls -la</code> → Show <strong>everything</strong>, even hidden files.</li>
-      <li><code>cat filename</code> → Just read it, no overthinking.</li>
-    </ul>
-  </li>
-
-  <li>
-    <h2>Check the File Type</h2>
-    <p>Use <code>file something</code> — it might be a ZIP, image, or something disguised as plain text.</p>
-  </li>
-
-  <li>
-    <h2>Strings Are Your Friend</h2>
-    <p><code>strings filename</code> can reveal text hidden inside binaries or weird formats.</p>
-  </li>
-
-  <li>
-    <h2>CyberChef Is Magic</h2>
-    <p>Bookmark <a href="https://gchq.github.io/CyberChef/" target="_blank">CyberChef</a>. It’s your all-in-one tool for encoding, decoding, and random transformations.</p>
-  </li>
-
-  <li>
-    <h2>Check Metadata</h2>
-    <p>Run <code>exiftool file</code> — sometimes flags hide in author fields or comments.</p>
-  </li>
-
-  <li>
-    <h2>Don’t Ignore Robots.txt</h2>
-    <p>On web challenges, always check <code>/robots.txt</code> — it can lead to juicy files or directories.</p>
-  </li>
-
-  <li>
-    <h2>Manual Pages Are Actually Useful</h2>
-    <p><code>man command</code> — yeah, the manual. Sometimes you’ll find options you didn’t know existed.</p>
-  </li>
-
-  <li>
-    <h2>When Stuck, Step Back</h2>
-    <p>Take a short break. Fresh eyes catch things tired ones miss.</p>
-  </li>
-</ol>
-
-<div class="note">
-  <strong>Note:</strong> The simplest commands often hide the answers. Don’t overcomplicate it.
-</div>
-
-<hr>
-
-<p><em>Keep hacking, keep learning. The flag’s out there — you just need to spot it.</em></p>
-
+        <p class="sign-off">
+            Good luck, and may your flags be real and your hints be kind.
+        </p>
+    </main>
 </body>
 </html>
