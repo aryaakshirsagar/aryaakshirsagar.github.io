@@ -1,93 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Linux Notes</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arya | Linux Notes</title>
+  <meta name="description" content="Arya's Linux notes and quick-reference commands for daily use." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #f9f9f9;
-      color: #222;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem;
-      line-height: 1.7;
-    }
-    h1, h2 {
-      font-weight: 600;
-      margin-top: 2rem;
-      margin-bottom: 0.8rem;
-    }
-    p {
-      margin-bottom: 1rem;
-    }
-    hr {
-      border: none;
-      border-top: 1px solid #ddd;
-      margin: 2rem 0;
     }
     code {
-      font-family: 'Fira Code', monospace;
-      background: #eee;
-      padding: 0.2rem 0.4rem;
+      background: #f3f4f6;
+      padding: 2px 5px;
       border-radius: 4px;
-      font-size: 0.95em;
+      font-size: 0.9em;
     }
     ul {
-      padding-left: 1.5rem;
-      margin-bottom: 1rem;
-    }
-    li {
-      margin-bottom: 0.4rem;
-    }
-    strong {
-      font-weight: 600;
-    }
-    em {
-      color: #666;
-    }
-    .back-link {
-      display: inline-block;
-      margin-bottom: 1.5rem;
-      font-size: 0.9rem;
-      color: #0077cc;
-      text-decoration: none;
-    }
-    .back-link:hover {
-      text-decoration: underline;
+      list-style-type: disc;
+      padding-left: 1.2em;
     }
   </style>
 </head>
-<body>
 
-  <a href="../index.html" class="back-link">&larr; Back to Home</a>
+<body class="bg-white text-gray-800">
 
-  <h1>Linux</h1>
-  <p>These are notes — the ones I type almost without thinking.</p>
+  <main class="max-w-3xl mx-auto px-6 py-16 space-y-16">
 
-  <hr>
+    <!-- Header -->
+    <section>
+      <h1 class="text-4xl font-semibold mb-2">Linux: Commands I Actually Use</h1>
+      <p class="text-lg text-gray-600">
+        A practical quick-reference guide to the Linux commands I use daily — for system navigation, file manipulation, and a bit of network work.
+      </p>
+    </section>
 
-  <h2>Navigation</h2>
-  <ul>
-    <li><code>pwd</code> : “Where am I?”</li>
-    <li><code>ls</code> : Show me what’s here.</li>
-    <li><code>ls -la</code> → Show me <strong>everything</strong> — even the files pretending they don’t exist.</li>
-  </ul>
-  <ul>
-    <li><code>cd &lt;dir&gt;</code> : Teleport into a folder.</li>
-    <li><code>cd ..</code> → Retreat one step.</li>
-    <li><code>cd ~</code> → Home sweet home.</li>
-  </ul>
+    <!-- Commands Section -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-4">Everyday Commands</h2>
+      <ul class="space-y-2">
+        <li><code>ls -la</code> → Show me <strong>everything</strong>, even the files pretending they don’t exist.</li>
+        <li><code>cd -</code> → Jump back to where I just was. Instant teleport.</li>
+        <li><code>grep -r "text" .</code> → Search inside files like a digital detective.</li>
+        <li><code>chmod +x script.sh</code> → Give a script the green light to run.</li>
+        <li><code>sudo !!</code> → Rerun the last command with superpowers.</li>
+      </ul>
+    </section>
 
-  <hr>
+    <!-- File & System Management -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-4">File & System Management</h2>
+      <ul class="space-y-2">
+        <li><code>df -h</code> → Check how much space is left before panic sets in.</li>
+        <li><code>du -sh *</code> → Find out which folders are hogging all the space.</li>
+        <li><code>tar -czvf archive.tar.gz folder/</code> → Compress stuff neatly.</li>
+        <li><code>htop</code> → See what's eating your CPU (and end it).</li>
+      </ul>
+    </section>
 
-  <!-- Rest of your sections stay the same -->
+    <!-- Networking -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-4">Networking</h2>
+      <ul class="space-y-2">
+        <li><code>ifconfig</code> or <code>ip a</code> → Show network interfaces.</li>
+        <li><code>ping -c 4 example.com</code> → See if the internet is alive.</li>
+        <li><code>netstat -tulnp</code> → List open ports and services.</li>
+      </ul>
+    </section>
 
-  <p style="margin-top:2rem; font-size:0.9rem; color:#666;">
-    typos can summon demons.
-  </p>
+    <!-- CTF Tips -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-4">CTF Quick Tips</h2>
+      <ul class="space-y-2">
+        <li>Always start with <code>strings</code> on binaries. Hidden messages love to hide there.</li>
+        <li>Use <code>binwalk</code> for files — you might find embedded treasures.</li>
+        <li>Don’t forget <code>exiftool</code> for images; metadata can be surprisingly chatty.</li>
+        <li>Bookmark <strong>CyberChef</strong>. It’s like a Swiss Army knife for encoding, decoding, and weird transformations.</li>
+        <li>When stuck, step back and read the challenge description again — clues hide in plain sight.</li>
+      </ul>
+    </section>
 
+    <!-- Back to Blog -->
+    <section>
+      <a href="/blog.html" class="text-blue-600 hover:underline">&larr; Back to Blog</a>
+    </section>
+
+  </main>
+
+  <footer class="text-center text-sm text-gray-400 py-6">
+    &copy; 2025 Arya
+  </footer>
 </body>
 </html>
