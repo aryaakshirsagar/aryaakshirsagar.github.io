@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OSINT Recon</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 700px;
+    margin: auto;
+    padding: 2rem;
+    line-height: 1.6;
+    color: #222;
+    background: #fafafa;
+  }
+  h1 {
+    font-weight: 700;
+    color: #0b3d91;
+  }
+  h2 {
+    margin-top: 2rem;
+    color: #0b3d91;
+  }
+  p {
+    margin-bottom: 1rem;
+  }
+  code {
+    background: #e0e0e0;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: monospace;
+  }
+  pre {
+    background: #e0e0e0;
+    padding: 1rem;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
+  ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  label {
+    cursor: pointer;
+    user-select: none;
+  }
+  /* Checklist style */
+  .checklist {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-top: 2rem;
+  }
+  .checklist ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .checklist li {
+    margin-bottom: 0.5rem;
+  }
+  .checklist input[type="checkbox"] {
+    margin-right: 0.5rem;
+    transform: scale(1.2);
+    cursor: pointer;
+    vertical-align: middle;
+  }
+  /* Floating star animation */
+  .star {
+    position: fixed;
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+    z-index: 9999;
+    background: radial-gradient(circle at center, #ffd700 40%, #ffa500 70%);
+    clip-path: polygon(
+      50% 0%,
+      61% 35%,
+      98% 35%,
+      68% 57%,
+      79% 91%,
+      50% 70%,
+      21% 91%,
+      32% 57%,
+      2% 35%,
+      39% 35%
+    );
+    filter: drop-shadow(0 0 3px #ffdd55);
+    animation: floatUp 1s ease forwards;
+  }
+  /* Spark particles */
+  .spark {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: #fffacd;
+    border-radius: 50%;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 1.5px #fffacd);
+    animation: sparkMove 1s ease forwards;
+    pointer-events: none;
+    z-index: 9998;
+  }
+  /* Star floats up */
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-120px) scale(1.4);
+      opacity: 0;
+    }
+  }
+  /* Sparks move randomly */
+  @keyframes sparkMove {
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.9;
+    }
+    100% {
+      transform: translate(var(--tx), var(--ty)) scale(0);
+      opacity: 0;
+    }
+  }
+  /* Star counter */
+  #counter {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(
+      120deg,
+      #ffd700 20%,
+      #fffacd 40%,
+      #ffd700 60%,
+      #fffacd 80%,
+      #ffd700 100%
+    );
+    background-size: 200% 200%;
+    animation: glitterShimmer 3s linear infinite, pulseScale 2.5s ease-in-out infinite alternate;
+    clip-path: polygon(
+      50% 0%,
+      61% 35%,
+      98% 35%,
+      68% 57%,
+      79% 91%,
+      50% 70%,
+      21% 91%,
+      32% 57%,
+      2% 35%,
+      39% 35%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0b3d91;
+    font-weight: 700;
+    font-size: 22px;
+    box-shadow: 0 0 8px #ffd700aa, 0 0 20px #ffd70088, 0 0 40px #fffacd88;
+    user-select: none;
+    z-index: 10000;
+    cursor: default;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  #counter.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  @keyframes glitterShimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+  @keyframes pulseScale {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 8px #ffd700aa, 0 0 20px #ffd70088, 0 0 40px #fffacd88;
+    }
+    50% {
+      transform: scale(1.1);
+      box-shadow: 0 0 12px #fffacdcc, 0 0 30px #fffacdcc, 0 0 50px #fffacdcc;
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 8px #ffd700aa, 0 0 20px #ffd70088, 0 0 40px #fffacd88;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>OSINT Recon</h1>
+
+<p>OSINT is like being a detective on the internet, but without breaking in anywhere. You’re just looking for stuff people accidentally left exposed online. Email addresses, sneaky PDFs, secret login pages the usual digital breadcrumbs, the internet’s version of “Oops, did I leave this here?”</p>
+
+<p><em>What does this mean, Arya??? Why are you so excited about this??? Why does your generation think using 3 repeating question marks is ok???</em></p>
+
+<h2>Why Bother With OSINT?</h2>
+<p>Whenever I start a project like a CTF challenge, bug bounty, or a side investigation. I spend a good chunk of time gathering all publicly available info first. Sure, it’s not flashy, but it saves you chasing dead ends later until suddenly, you’ve got a juicy lead nobody else saw coming.</p>
+
+<h2>The Workflow I Follow</h2>
+<p>For me, it usually starts with what I call the “invisible footprints” stuff like:</p>
+
+<ul>
+  <li>Passive snooping: Google-fu and WHOIS stalking. Find out who owns the domain and when they bought it. Sometimes that’s the jackpot.</li>
+  <li>Going full Sherlock with <code>theHarvester</code>, because manually googling emails is for amateurs.</li>
+  <li>“Google dorking” : hunting PDFs, spreadsheets, or hidden login pages with search commands like <code>site:target.com filetype:pdf</code>.</li>
+</ul>
+
+<p>Occasionally I jump into “active recon” territory, but only when I have the green light. That means poking around ports, enumerating subdomains with tools like <code>sublist3r</code>, or creeping on exposed devices with Shodan (because who doesn’t want to know if their neighbor’s webcam is on the internet?).</p>
+
+<p><em>ARYA YOU LIED TO ME! THIS IS DAMN HARD!<br>Deep breath.</em></p>
+
+<p>And then, the fun part: the analysis. Where I connect all the dots.</p>
+
+<pre>
+# some daily bread-and-butter commands I run
+theharvester -d target.com -b google
+site:target.com filetype:pdf
+site:target.com inurl:admin
+curl -s https://haveibeenpwned.com/api/v3/breachedaccount/email@example.com
+shodan host 1.2.3.4
+</pre>
+
+<p><strong>Easier??? Yep!</strong></p>
+
+<div class="checklist" id="checklistSection">
+  <h3>Before You Start</h3>
+  <ul>
+    <li><label><input type="checkbox" /> Get permission if needed : know your legal boundaries.</label></li>
+    <li><label><input type="checkbox" /> Set up your workspace : notes, spreadsheets, tools.</label></li>
+  </ul>
+
+  <h3>Passive Recon</h3>
+  <ul>
+    <li><label><input type="checkbox" /> Google dorks : hunt hidden files, pages, and info.</label></li>
+    <li><label><input type="checkbox" /> WHOIS lookup : check domain registration info.</label></li>
+    <li><label><input type="checkbox" /> Gather emails, subdomains : use <code>theHarvester</code> or similar.</label></li>
+    <li><label><input type="checkbox" /> Check breaches with HaveIBeenPwned.</label></li>
+    <li><label><input type="checkbox" /> Explore social media : LinkedIn is a goldmine for employee info.</label></li>
+  </ul>
+
+  <h3>Active Recon (If Allowed)</h3>
+  <ul>
+    <li><label><input type="checkbox" /> Subdomain enumeration with tools like <code>sublist3r</code>.</label></li>
+    <li><label><input type="checkbox" /> Light port scans (e.g., <code>nmap -sV -p- target.com</code>).</label></li>
+    <li><label><input type="checkbox" /> Check for exposed devices on Shodan.</label></li>
+  </ul>
+
+  <h3>Analysis & Reporting</h3>
+  <ul>
+    <li><label><input type="checkbox" /> Organize intel : use notes or spreadsheets.</label></li>
+    <li><label><input type="checkbox" /> Look for patterns and juicy targets.</label></li>
+    <li><label><input type="checkbox" /> Plan next steps or submit findings.</label></li>
+  </ul>
+</div>
+
+<div id="counter">0</div>
+
+<p style="font-weight: 700; font-size: 1.2rem; margin-top: 2rem;">Boom!</p>
+
+<p> Before anyone comes at me, yes, OSINT has its quirks and limitations. But hey, where’s the fun without a few twists and turns eh?</p>
+
+<p>OSINT isn’t sexy, it’s more like a slow-cooked meal than fast food. But the info you dig up can be the difference between winning and losing your whole project.</p>
+
+<script>
+  const checklist = document.querySelector('.checklist');
+  const counter = document.getElementById('counter');
+  const checklistSection = document.getElementById('checklistSection');
+
+  function createStar(x, y) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = x + 'px';
+    star.style.top = y + 'px';
+    document.body.appendChild(star);
+
+    for (let i = 0; i < 6; i++) {
+      const spark = document.createElement('div');
+      spark.className = 'spark';
+      const tx = (Math.random() * 100 - 50).toFixed(2) + 'px';
+      const ty = (Math.random() * -100 - 30).toFixed(2) + 'px';
+      spark.style.left = x + 10 + 'px';
+      spark.style.top = y + 10 + 'px';
+      spark.style.setProperty('--tx', tx);
+      spark.style.setProperty('--ty', ty);
+      document.body.appendChild(spark);
+      spark.addEventListener('animationend', () => spark.remove());
+    }
+
+    star.addEventListener('animationend', () => star.remove());
+  }
+
+  function updateCounter() {
+    const checkedCount = checklist.querySelectorAll('input[type="checkbox"]:checked').length;
+    counter.textContent = checkedCount;
+  }
+
+  checklist.addEventListener('change', (e) => {
+    if (e.target.type === 'checkbox') {
+      updateCounter();
+      const rect = e.target.getBoundingClientRect();
+      const starX = rect.left + rect.width / 2;
+      const starY = rect.top - 10;
+      createStar(starX, starY);
+    }
+  });
+
+  function checkVisibility() {
+    const rect = checklistSection.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      counter.classList.add('visible');
+    } else {
+      counter.classList.remove('visible');
+    }
+  }
+
+  window.addEventListener('scroll', checkVisibility);
+  window.addEventListener('resize', checkVisibility);
+  checkVisibility();
+</script>
+
+</body>
+</html>
